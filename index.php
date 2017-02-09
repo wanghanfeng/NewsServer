@@ -12,15 +12,19 @@ include 'sqlLink.php';
  * 发送post请求
  * @param string $url 请求地址
  * @param array $post_data post键值对数据
+ * @param array $header_arr post请求头
  * @return array
  */
 function send_post($url,$post_data, $header_arr=null) {
 
     $postdata = http_build_query($post_data);
     $header = '';
-    foreach ($header_arr as $key => $value){
-        $header = $header . $key . ':' .$value . '\n';
+    if ($header_arr){
+        foreach ($header_arr as $key => $value){
+            $header = $header . $key . ':' .$value . '\n';
+        }
     }
+
     if (strlen($header)!=0){
         $header = substr($header,0,strlen($header)-1);
     }
