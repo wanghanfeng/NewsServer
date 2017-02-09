@@ -14,13 +14,23 @@ include 'sqlLink.php';
  * @param array $post_data post键值对数据
  * @return array
  */
-function send_post($url, $post_data) {
+function send_post($url,$post_data, $header_arr=null) {
 
     $postdata = http_build_query($post_data);
+    $header = '';
+    foreach ($header_arr as $key => $value){
+        $header = $header . $key . ':' .$value . '\n';
+    }
+    if (strlen($header)!=0){
+        $header = substr($header,0,strlen($header)-1);
+    }
+    else{
+        $header = 'Content-type:application/x-www-form-urlencoded';
+    }
     $options = array(
         'http' => array(
             'method' => 'POST',
-            'header' => 'Content-type:application/x-www-form-urlencoded',
+            'header' => $header,
             'content' => $postdata,
             'timeout' => 0.5 * 60 // 超时时间（单位:s）
         )
