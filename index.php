@@ -51,6 +51,7 @@ function send_post($url,$post_data, $header_arr=null) {
     return $result;
 }
 
+//构造post请求
 $post_data = array(
     'type' => 'keji',
     'key' => '9b36e7f06020e794a3547c5718bc114c'
