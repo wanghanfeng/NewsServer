@@ -33,4 +33,4 @@ function writeTable($tableName,$item){
     }
 }
 
-function readTable($tableName,)
+//function readTable($tableName,$)
